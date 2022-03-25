@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: Sample API
+  description: API lists all the repositories for user in Github
+  version: 0.1.9
+servers:
+  - url: http://localhost:8080
+    description: default server
+paths:
+  /api/users/{username}/repositories:
+    get:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: username
+          required: true
+          example: lukaszz86
+          schema:
+            type: string
+          explode: true
+        - in: header
+          name: Content-Type
+          required: false
+          example: application/json
+          schema:
+            type: string
+      summary: Returns a list of Github repositories.
+      description: Lists all the repositories and branches that are not forked for given user
+      responses:
+        '200':    # status code
+          description: A JSON array of repositories with branches
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string

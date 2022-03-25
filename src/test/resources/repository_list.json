@@ -1,0 +1,26 @@
+[
+  {
+    "repositoryName": "repo-util",
+    "ownerName": "lukaszz86",
+    "branches": [
+      {
+        "branchName": "main",
+        "commitSha": "b0bccf476e9c77816a2f0a9bc4deda93eedcd02c"
+      }
+    ]
+  },
+  {
+    "repositoryName": "testing",
+    "ownerName": "lukaszz86",
+    "branches": [
+      {
+        "branchName": "dev",
+        "commitSha": "bcf1371a4c156ff3fd3a8c59e277ccf3a1b1d45d"
+      },
+      {
+        "branchName": "main",
+        "commitSha": "0ff293c4873d18b0c1c0437ba5918926960d1f8c"
+      }
+    ]
+  }
+]

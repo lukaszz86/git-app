@@ -1,0 +1,23 @@
+GET https://api.github.com/users/lukaszz86/repos
+
+###
+
+GET https://api.github.com/repos/lukaszz86/testing/branches
+
+###
+### List user gihbub repositories with branchers
+GET http://localhost:8080/api/users/lukaszz86/repositories
+Content-Type: application/json
+###
+
+###
+### Return 404 User Not Found error
+GET http://localhost:8080/api/users/lukaszz8600/repositories
+Content-Type: application/json
+###
+
+###
+### Return 406 unsupported media type
+GET http://localhost:8080/api/users/lukaszz8600/repositories
+Content-Type: application/xml
+###
