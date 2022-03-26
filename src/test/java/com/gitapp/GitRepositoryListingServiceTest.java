@@ -13,6 +13,7 @@ import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 import reactor.test.publisher.PublisherProbe;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -33,6 +34,7 @@ public class GitRepositoryListingServiceTest {
     @Test
     public void should_return_a_list_of_branches_for_given_user() {
 
+        //given
         Owner owner = new Owner();
         owner.setLogin(USER);
 
@@ -42,10 +44,12 @@ public class GitRepositoryListingServiceTest {
         gitRepository.setRepositoryName(REPO_UTIL);
 
         PublisherProbe publisherProbe = PublisherProbe.of(Flux.just(gitRepository));
-        when(githubRepositoryListingClient.retrieveGitRepository(USER)).thenReturn(publisherProbe.flux());
+        given(githubRepositoryListingClient.retrieveGitRepository(USER)).willReturn(publisherProbe.flux());
 
+        //when
         Flux<GitRepository> actual = gitRepositoryListingService.listUserGitRepositories(USER);
 
+        //then
         StepVerifier.create(actual)
                 .expectNextMatches(gitRepository1 -> gitRepository1.getRepositoryName().equals(REPO_UTIL))
                 .verifyComplete();

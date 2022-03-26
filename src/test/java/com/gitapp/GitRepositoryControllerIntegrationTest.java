@@ -50,6 +50,8 @@ public class GitRepositoryControllerIntegrationTest {
 
     @Test
     void should_return_ok_response() {
+        //given
+        //when
         wireMockServer.stubFor(
                 WireMock.get(TEST_URI_PATH)
                         .willReturn(aResponse()
@@ -57,6 +59,7 @@ public class GitRepositoryControllerIntegrationTest {
                                 .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                                 .withBody(readResource(GIT_REPO_LISTING_FILE))));
 
+        //then
         webTestClient.get()
                 .uri(PATH,USER)
                 .exchange()
@@ -73,6 +76,8 @@ public class GitRepositoryControllerIntegrationTest {
 
     @Test
     void should_return_status_not_found_with_proper_message() {
+        //given
+        //when
         wireMockServer.stubFor(
                 WireMock.get(TEST_URI_PATH)
                         .willReturn(aResponse()
@@ -80,6 +85,7 @@ public class GitRepositoryControllerIntegrationTest {
                                 .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                                 .withBody(readResource(GIT_REPO_NOT_FOUND_FILE))));
 
+        //then
         webTestClient.get()
                 .uri(PATH,USER)
                 .exchange()
@@ -92,6 +98,8 @@ public class GitRepositoryControllerIntegrationTest {
 
     @Test
     void should_return_status_not_acceptable_with_proper_message() {
+        //given
+        //when
         wireMockServer.stubFor(
                 WireMock.get(TEST_URI_PATH)
                         .willReturn(aResponse()
@@ -99,6 +107,7 @@ public class GitRepositoryControllerIntegrationTest {
                                 .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                                 .withBody(readResource(GIT_REPO_NOT_ACCEPTABLE_FILE))));
 
+        //then
         webTestClient.get()
                 .uri(PATH,USER)
                 .exchange()

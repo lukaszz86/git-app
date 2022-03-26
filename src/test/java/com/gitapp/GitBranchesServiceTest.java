@@ -13,6 +13,7 @@ import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 import reactor.test.publisher.PublisherProbe;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -34,6 +35,7 @@ public class GitBranchesServiceTest {
     @Test
     public void should_return_a_list_of_branches_for_given_user(){
 
+        //given
         Commit commit = new Commit();
         commit.setSha(COMMIT);
 
@@ -42,10 +44,13 @@ public class GitBranchesServiceTest {
         branch.setCommit(commit);
 
         PublisherProbe publisherProbe = PublisherProbe.of(Flux.just(branch));
-        when(githubBranchesClient.retrieveBranches(USER, REPO_UTIL)).thenReturn(publisherProbe.flux());
 
+        given(githubBranchesClient.retrieveBranches(USER, REPO_UTIL)).willReturn(publisherProbe.flux());
+
+        //when
         Flux<Branch> actual = gitBranchesService.retrieveBranches(USER, REPO_UTIL);
 
+        //then
         StepVerifier.create(actual)
                 .expectNextMatches(branch1 -> branch1.getCommit().getSha().equals(COMMIT))
                 .verifyComplete();

@@ -20,31 +20,46 @@ public class ControllerAdviceTest {
 
     @Test
     public void should_return_user_not_found(){
+        //given
+        //when
         Mono<ErrorMessage> errorMessage = gitAppControllerAdvice.handleUserNotFound(new UserNotFoundException(""));
+        //then
         StepVerifier.create(errorMessage).expectNextMatches(e -> e.getStatus()==404).verifyComplete();
     }
 
     @Test
     public void should_return_user_not_acceptable(){
+        //given
+        //when
         Mono<ErrorMessage> errorMessage = gitAppControllerAdvice.handleUnsupportedMediaTypeException(new UnsupportedMediaTypeException(""));
+        //then
         StepVerifier.create(errorMessage).expectNextMatches(e -> e.getStatus()==406).verifyComplete();
     }
 
     @Test
     public void should_return_bad_request(){
+        //given
+        //when
         Mono<ErrorMessage> errorMessage = gitAppControllerAdvice.handleBadRequestException(new ServerWebInputException(""));
+        //then
         StepVerifier.create(errorMessage).expectNextMatches(e -> e.getStatus()==400).verifyComplete();
     }
 
     @Test
     public void should_return_internal_error_on_exception(){
+        //given
+        //when
         Mono<ErrorMessage> errorMessage = gitAppControllerAdvice.handleException(new Exception());
+        //then
         StepVerifier.create(errorMessage).expectNextMatches(e -> e.getStatus()==500).verifyComplete();
     }
 
     @Test
     public void should_return_internal_error_on__runtime_exception(){
+        //given
+        //when
         Mono<ErrorMessage> errorMessage = gitAppControllerAdvice.handleRuntimeException(new RuntimeException());
+        //then
         StepVerifier.create(errorMessage).expectNextMatches(e -> e.getStatus()==500).verifyComplete();
     }
 }
