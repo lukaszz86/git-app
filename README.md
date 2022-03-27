@@ -1,14 +1,15 @@
 # git-app
 
-> Application listing all github repositories for given user
+> Application listing all GitHub repositories for given user
 
 ## Documentation
 
+> Java version : 17 <br/><br/>
 > Link to documentation on swagger: http://localhost:8080/swagger-ui.html <br/><br>
-> List user's gihbub repositories that are not forked with branchers  <br/><br/>
+> List user's GitHub repositories with branches that are not forked <br/><br/>
 `GET http://localhost:8080/api/users/lukaszz86/repositories
 Content-Type: application/json` <br/><br/>
-> This API return 404 when  user has no repositories in github <br/><br/>
+> When user has no repositories in the GitHub the API returns 404 <br/><br/>
 `GET http://localhost:8080/api/users/lukaszz860099/repositories
 Content-Type: application/json`<br/><br/>
 > This API return 406 when content-type other that application/json is used <br/><br/>
@@ -24,8 +25,7 @@ Content-Type: application/xml`<br/><br/>
 > | 400 | BAD_REQUEST - Incorrect input parameters, headers or path | 
 > | 404 | USER_NOT_FOUND - User does not exist in Github repository | 
 > | 406 | NOT_ACCEPTABLE - Incorrect media type used in request | 
-> | 500 | INTERNAL_SERVER_ERROR - user does not exist in Github repository | 
-> | 500 | INTERNAL_SERVER_ERROR - user does not exist in Github repository | 
+> | 500 | INTERNAL_SERVER_ERROR - When application error occurs | 
 
 ## Docker
 
